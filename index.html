@@ -1,34 +1,187 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Glee Club Checker</title>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css" />
-<script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght
-@400;600&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet"
+          href="https://pyscript.net/releases/2026.7.3/core.css">
+
+    <script type="module"
+            src="https://pyscript.net/releases/2026.7.3/core.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@400;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #071a38, #124a8a, #d9edff);
+            color: #102d54;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 3rem);
+            letter-spacing: 5px;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(146, 207, 255, 0.8);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-top: 12px;
+            color: #e0f1ff;
+        }
+
+        main {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid #c4e3ff;
+            box-shadow: 0 18px 45px rgba(0, 15, 45, 0.3);
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #c6ddf5;
+            border-radius: 10px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: #102d54;
+            background: #f4f9ff;
+            outline: none;
+            transition: 0.25s;
+        }
+
+        input[type="text"]::placeholder {
+            color: #7d9cbd;
+        }
+
+        input[type="text"]:focus {
+            border-color: #1677d2;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(22, 119, 210, 0.12);
+        }
+
+        input[type="button"] {
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677d2, #08458b);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(8, 69, 139, 0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="button"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(8, 69, 139, 0.35);
+        }
+
+        input[type="button"]:active {
+            transform: translateY(0);
+        }
+
+        #result {
+            margin-top: 22px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #edf6ff;
+            color: #124a8a;
+            font-size: 1.1rem;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        #result:empty {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                letter-spacing: 3px;
+            }
+        }
+    </style>
 </head>
-<py-script src="main.py"></py-script>
-<body>
-<header> 
-    <div class="reactor"></div>
-    <h1> GLEE CLUB </h1>
-    <p> descriptrion</p>
-</header>
 
-<main>
-    <form>
-        <input type="text" id="first_name" placeholder="Enter your first name"><br>
-        <input type="text" id="last_name" placeholder="Enter your last name"><br>
-        <input type="button" py-click="canidate_checker" value="Enter"><br>
-    </form>
-    <div id="result"></div>
-</main>
-         
+<body>
+
+    <header>
+        <div class="reactor"></div>
+        <h1>GLEE CLUB</h1>
+        <p>Register</p>
+    </header>
+
+    <main>
+        <form onsubmit="return false;">
+            <input type="text"
+                   id="first_name"
+                   placeholder="First name (MAX)"
+                   autocomplete="given-name"
+                   required>
+
+            <input type="text"
+                   id="last_name"
+                   placeholder="Last name (CALATA)"
+                   autocomplete="family-name"
+                   required>
+
+            <input type="button"
+                   py-click="candidate_checker"
+                   value="ENTER">
+        </form>
+
+        <div id="result" aria-live="polite"></div>
+    </main>
+
+    <script type="py" src="main.py"></script>
+
 </body>
 </html>
